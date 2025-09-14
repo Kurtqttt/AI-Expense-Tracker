@@ -60,7 +60,7 @@ const ContactPage = () => {
             </h2>
             <p className='text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto px-2 sm:px-0'>
               Choose the most convenient way to reach out to our ExpenseTracker
-              AI support team.
+              AI Support Team.
             </p>
           </div>
 
@@ -108,7 +108,7 @@ const ContactPage = () => {
                   href='tel:+11234567890'
                   className='inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-medium transition-colors duration-200 text-sm sm:text-base'
                 >
-                  +1 (123) 456-7890
+                  +63 962 695 1507
                   <span className='text-sm'>→</span>
                 </a>
               </div>
@@ -128,9 +128,9 @@ const ContactPage = () => {
                   partnership discussions.
                 </p>
                 <div className='text-emerald-600 dark:text-emerald-400 font-medium text-sm sm:text-base'>
-                  123 AI Innovation St
+                  Tunga, Moalboal, Cebu
                   <br />
-                  Tech City, USA
+                  Philippines
                 </div>
               </div>
             </div>
@@ -167,11 +167,11 @@ const ContactPage = () => {
               <div className='space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400'>
                 <div className='flex justify-between'>
                   <span>Monday - Friday:</span>
-                  <span className='font-medium'>9:00 AM - 6:00 PM PST</span>
+                  <span className='font-medium'>8:00 AM - 5:00 PM Philippine Standard Time</span>
                 </div>
                 <div className='flex justify-between'>
                   <span>Saturday:</span>
-                  <span className='font-medium'>10:00 AM - 4:00 PM PST</span>
+                  <span className='font-medium'>10:00 AM - 4:00 PM Philippine Standard Time</span>
                 </div>
                 <div className='flex justify-between'>
                   <span>Sunday:</span>
