@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE "public"."User" (
+CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "clerkUserId" TEXT NOT NULL,
     "email" TEXT NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE "public"."User" (
 );
 
 -- CreateTable
-CREATE TABLE "public"."Record" (
+CREATE TABLE "Record" (
     "id" TEXT NOT NULL,
     "text" TEXT NOT NULL,
     "amount" DOUBLE PRECISION NOT NULL,
@@ -25,13 +25,13 @@ CREATE TABLE "public"."Record" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_clerkUserId_key" ON "public"."User"("clerkUserId");
+CREATE UNIQUE INDEX "User_clerkUserId_key" ON "User"("clerkUserId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_email_key" ON "public"."User"("email");
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
-CREATE INDEX "Record_userId_idx" ON "public"."Record"("userId");
+CREATE INDEX "Record_userId_idx" ON "Record"("userId");
 
 -- AddForeignKey
-ALTER TABLE "public"."Record" ADD CONSTRAINT "Record_userId_fkey" FOREIGN KEY ("userId") REFERENCES "public"."User"("clerkUserId") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Record" ADD CONSTRAINT "Record_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("clerkUserId") ON DELETE CASCADE ON UPDATE CASCADE;
