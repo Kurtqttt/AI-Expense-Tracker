@@ -167,11 +167,11 @@ const ContactPage = () => {
               <div className='space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400'>
                 <div className='flex justify-between'>
                   <span>Monday - Friday:</span>
-                  <span className='font-medium'>8:00 AM - 5:00 PM Philippine Standard Time</span>
+                  <span className='font-medium'>8:00 AM - 5:00 PM PST</span>
                 </div>
                 <div className='flex justify-between'>
                   <span>Saturday:</span>
-                  <span className='font-medium'>10:00 AM - 4:00 PM Philippine Standard Time</span>
+                  <span className='font-medium'>10:00 AM - 4:00 PM PST</span>
                 </div>
                 <div className='flex justify-between'>
                   <span>Sunday:</span>
