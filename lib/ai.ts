@@ -34,24 +34,28 @@ export interface AIInsight {
   confidence: number;
 }
 
+// ✅ Updated to enforce Peso symbol (₱)
 export async function generateExpenseInsights(
   expenses: ExpenseRecord[]
 ): Promise<AIInsight[]> {
   try {
-    // Prepare expense data for AI analysis
+    // Format expenses with ₱ sign
     const expensesSummary = expenses.map((expense) => ({
-      amount: expense.amount,
+      amount: `₱${expense.amount.toLocaleString('en-PH')}`,
       category: expense.category,
       description: expense.description,
       date: expense.date,
     }));
 
-    const prompt = `Analyze the following expense data and provide 3-4 actionable financial insights. 
+    // Updated prompt emphasizing Peso context
+    const prompt = `Analyze the following expense data (amounts are in Philippine Pesos ₱) and provide 3-4 actionable financial insights.
+    Always use the ₱ symbol when referring to money values.
+
     Return a JSON array of insights with this structure:
     {
       "type": "warning|info|success|tip",
       "title": "Brief title",
-      "message": "Detailed insight message with specific numbers when possible",
+      "message": "Detailed insight message showing Peso amounts (₱) when possible",
       "action": "Actionable suggestion",
       "confidence": 0.8
     }
@@ -68,12 +72,12 @@ export async function generateExpenseInsights(
     Return only valid JSON array, no additional text.`;
 
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4.1',//Updated OpenAI API GPT-4.1 Model
+      model: 'gpt-4.1', // Updated OpenAI API GPT-4.1 Model
       messages: [
         {
           role: 'system',
           content:
-            'You are a financial advisor AI that analyzes spending patterns and provides actionable insights. Always respond with valid JSON only.',
+            'You are a Filipino financial advisor AI that analyzes spending patterns in Philippine Pesos (₱) and provides actionable insights. Always respond with valid JSON only.',
         },
         {
           role: 'user',
@@ -89,7 +93,6 @@ export async function generateExpenseInsights(
       throw new Error('No response from AI');
     }
 
-    // Clean the response by removing markdown code blocks if present
     let cleanedResponse = response.trim();
     if (cleanedResponse.startsWith('```json')) {
       cleanedResponse = cleanedResponse
@@ -101,10 +104,8 @@ export async function generateExpenseInsights(
         .replace(/\s*```$/, '');
     }
 
-    // Parse AI response
     const insights = JSON.parse(cleanedResponse);
 
-    // Add IDs and ensure proper format
     const formattedInsights = insights.map(
       (insight: RawInsight, index: number) => ({
         id: `ai-${Date.now()}-${index}`,
@@ -120,7 +121,6 @@ export async function generateExpenseInsights(
   } catch (error) {
     console.error('❌ Error generating AI insights:', error);
 
-    // Fallback to mock insights if AI fails
     return [
       {
         id: 'fallback-1',
@@ -182,23 +182,23 @@ export async function generateAIAnswer(
 ): Promise<string> {
   try {
     const expensesSummary = context.map((expense) => ({
-      amount: expense.amount,
+      amount: `₱${expense.amount.toLocaleString('en-PH')}`,
       category: expense.category,
       description: expense.description,
       date: expense.date,
     }));
 
-    const prompt = `Based on the following expense data, provide a detailed and actionable answer to this question: "${question}"
+    const prompt = `Based on the following expense data (all amounts in ₱ Philippine Pesos), provide a detailed and actionable answer to this question: "${question}"
 
     Expense Data:
     ${JSON.stringify(expensesSummary, null, 2)}
 
     Provide a comprehensive answer that:
     1. Addresses the specific question directly
-    2. Uses concrete data from the expenses when possible
+    2. Uses concrete data from the expenses when possible (always include ₱ for money)
     3. Offers actionable advice
     4. Keeps the response concise but informative (2-3 sentences)
-    
+
     Return only the answer text, no additional formatting.`;
 
     const completion = await openai.chat.completions.create({
@@ -207,7 +207,7 @@ export async function generateAIAnswer(
         {
           role: 'system',
           content:
-            'You are a helpful financial advisor AI that provides specific, actionable answers based on expense data. Be concise but thorough.',
+            'You are a Filipino financial advisor AI that provides specific, actionable answers using Philippine Peso (₱) currency format. Be concise but thorough.',
         },
         {
           role: 'user',
