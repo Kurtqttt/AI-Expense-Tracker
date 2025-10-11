@@ -68,7 +68,7 @@ export async function generateExpenseInsights(
     Return only valid JSON array, no additional text.`;
 
     const completion = await openai.chat.completions.create({
-      model: 'deepseek/deepseek-chat-v3-0324:free',
+      model: 'gpt-4.1',//Updated OpenAI API GPT-4.1 Model
       messages: [
         {
           role: 'system',
