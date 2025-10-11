@@ -233,7 +233,7 @@ const AddRecord = () => {
               <span className='w-1.5 h-1.5 bg-green-500 rounded-full'></span>
               Amount
               <span className='text-xs text-gray-400 dark:text-gray-500 ml-2 font-normal hidden sm:inline'>
-                Enter amount between $0 and $1,000
+                Enter amount between ₱0 and ₱1,000
               </span>
             </label>
             <div className='relative'>
